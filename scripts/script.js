@@ -1,41 +1,23 @@
-const ratingArticle = document.querySelector('.js-rating-article');
-const thankyouArticle = document.querySelector('.js-thankyou-article');
-const submitButtons = document.querySelector('.js-submit-button');
+const ratingArticleEle = document.querySelector('.js-rating-article');
+const thankyouArticleEle = document.querySelector('.js-thankyou-article');
+const formEle = document.querySelector('.main__form');
 
-const ratingButtons = document.querySelectorAll('.js-rating-button');
-const selectedRating = document.querySelector('.js-selected-rating');
+const ratingCountEle= document.querySelectorAll('.js-main__rating-count');
+const selectedRatingEle = document.querySelector('.js-selected-rating');
 
 
-ratingButtons.forEach((buttonElement, index) => {
 
-  buttonElement.addEventListener('click', () =>{
-    
-    //calling the function to change the rating button style
-    changeRatingButtoncolor(index);
-    
-    selectedRating.innerHTML = buttonElement.innerHTML;
-
-    submitButtons.addEventListener('click', () => {              
-        ratingArticle.style.display = 'none';
-        thankyouArticle.style.display = 'grid';  
-    });
-    
+ratingCountEle.forEach((ratingEle, index) => {
+  ratingEle.addEventListener('click', () =>{
+    selectedRatingEle.innerHTML = ratingEle.innerHTML;    
   });
-
 });
 
 
-//function to change the rating button style
-function changeRatingButtoncolor(presedButtonIndex){
-  ratingButtons.forEach((buttonElement, index) => {
-    if(index === presedButtonIndex){
-      buttonElement.classList.remove('rating-button-normal');
-      buttonElement.classList.add('rating-button-selected');
-    }else{
-      buttonElement.classList.remove('rating-button-selected');
-      buttonElement.classList.add('rating-button-normal');
-    }
-  });
-}
+formEle.addEventListener('submit', (e) => {    
+  e.preventDefault();       
+  ratingArticleEle.style.display = 'none';
+  thankyouArticleEle.style.display = 'grid';  
+});
 
 
